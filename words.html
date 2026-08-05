@@ -1,292 +1,516 @@
 <!DOCTYPE html>
-
 <html lang="ar" dir="rtl">
 
 <head>
 
-```
-<meta charset="UTF-8">
+    <script async
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3809987460267480"
+        crossorigin="anonymous">
+    </script>
 
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
->
+    <meta
+        name="google-adsense-account"
+        content="ca-pub-3809987460267480"
+    >
 
-<title>تعلم الكلمات</title>
+    <meta charset="UTF-8">
 
-<link rel="stylesheet" href="words.css">
-```
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>تعلم الكلمات</title>
+
+    <link
+        rel="stylesheet"
+        href="words.css"
+    >
+
+    <style>
+
+        /* ==========================================
+           زر إظهار / إخفاء الترجمة
+        ========================================== */
+
+        .translation-toggle {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 8px;
+
+            margin-top: 10px;
+
+            padding: 10px 18px;
+
+            border: none;
+
+            border-radius: 12px;
+
+            background: #f1f4f9;
+
+            color: #333;
+
+            font-size: 15px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+
+        }
+
+
+        .translation-toggle:hover {
+
+            transform: translateY(-1px);
+
+            background: #e7ebf2;
+
+        }
+
+
+        .translation-toggle:active {
+
+            transform: scale(0.98);
+
+        }
+
+
+        /* الترجمة مخفية افتراضيًا */
+
+        .arabic-word.hidden-translation {
+
+            display: none;
+
+        }
+
+    </style>
 
 </head>
 
+
 <body>
 
-<header class="topbar">
 
-```
-<button
-    class="back-btn"
-    onclick="goBack()"
->
-    ← رجوع
-</button>
+    <!-- ==========================================
+         الشريط العلوي
+    ========================================== -->
 
-
-<div class="title">
-    📚 تعلم الكلمات
-</div>
-
-
-<button
-    class="home-btn"
-    onclick="goHome()"
->
-    🏠
-</button>
-```
-
-</header>
-
-<main class="container">
-
-```
-<!-- التقدم -->
-
-<div class="progress-area">
-
-    <div class="progress-info">
-
-        <span>
-            تقدمك
-        </span>
-
-        <strong id="progressText">
-            1 / 10
-        </strong>
-
-    </div>
-
-
-    <div class="progress-bar">
-
-        <div id="progressFill"></div>
-
-    </div>
-
-</div>
-
-
-
-<!-- بطاقة الكلمة -->
-
-<section class="word-card">
-
-
-    <!-- الصورة -->
-
-    <div class="image-container">
-
-        <div
-            id="wordEmoji"
-            class="word-image"
-        >
-            🍎
-        </div>
-
-    </div>
-
-
-
-    <div class="word-content">
-
-
-        <!-- الإنجليزية -->
-
-        <div
-            class="english-word"
-            id="englishWord"
-        >
-            Apple
-        </div>
-
-
-
-        <!-- زر إظهار الترجمة -->
+    <header class="topbar">
 
         <button
-            type="button"
-            id="translationBtn"
-            class="translation-btn"
-            onclick="toggleTranslation()"
+            class="back-btn"
+            onclick="goBack()"
         >
-            👁️ إظهار الترجمة
+            ← رجوع
         </button>
 
 
+        <div class="title">
+            📚 تعلم الكلمات
+        </div>
 
-        <!-- العربية -->
 
-        <div
-            class="arabic-word hidden-translation"
-            id="arabicWord"
+        <button
+            class="home-btn"
+            onclick="goHome()"
         >
-            تفاحة
+            🏠
+        </button>
+
+    </header>
+
+
+
+    <!-- ==========================================
+         المحتوى
+    ========================================== -->
+
+    <main class="container">
+
+
+        <!-- ==========================================
+             التقدم
+        ========================================== -->
+
+        <div class="progress-area">
+
+            <div class="progress-info">
+
+                <span>
+                    تقدمك
+                </span>
+
+                <strong id="progressText">
+                    1 / 10
+                </strong>
+
+            </div>
+
+
+            <div class="progress-bar">
+
+                <div id="progressFill"></div>
+
+            </div>
+
         </div>
 
 
 
-        <!-- النطق -->
+        <!-- ==========================================
+             بطاقة الكلمة
+        ========================================== -->
 
-        <button
-            type="button"
-            class="sound-btn"
-            onclick="speakWord()"
-        >
-            🔊 اسمع الكلمة
-        </button>
+        <section class="word-card">
 
 
+            <!-- الصورة -->
 
-        <!-- المثال -->
+            <div class="image-container">
 
-        <div class="example">
+                <div
+                    id="wordEmoji"
+                    class="word-image"
+                >
+                    🍎
+                </div>
 
-
-            <span>
-                💡 مثال
-            </span>
-
-
-            <p id="exampleText">
-                I eat an apple.
-            </p>
-
-
-            <!-- زر ترجمة المثال -->
-
-            <button
-                type="button"
-                id="exampleTranslationBtn"
-                class="example-translation-btn"
-                onclick="toggleExampleTranslation()"
-            >
-                👁️ إظهار ترجمة المثال
-            </button>
-
-
-            <!-- ترجمة المثال -->
-
-            <small
-                id="exampleArabic"
-                class="hidden-translation"
-            >
-                أنا آكل تفاحة.
-            </small>
+            </div>
 
 
 
-            <div class="example-sound-buttons">
+            <!-- محتوى الكلمة -->
 
+            <div class="word-content">
+
+
+                <!-- الإنجليزية -->
+
+                <div
+                    class="english-word"
+                    id="englishWord"
+                >
+                    Apple
+                </div>
+
+
+
+                <!-- العربية -->
+
+                <div
+    id="arabicWord"
+    class="arabic-word"
+    style="display: none;"
+>
+    تفاحة
+</div>
+
+<button
+    type="button"
+    id="translationBtn"
+    class="translation-btn"
+    onclick="toggleTranslation()"
+>
+    👁️ إظهار الترجمة
+</button>
+
+
+
+                <!-- زر إظهار الترجمة -->
 
                 <button
                     type="button"
-                    class="example-sound-btn"
-                    onclick="speakExample()"
+                    id="translationToggle"
+                    class="translation-toggle"
+                    onclick="toggleTranslation()"
                 >
-                    🔊 اسمع الجملة
+                    👁️ إظهار الترجمة
                 </button>
 
+
+
+                <!-- نطق الكلمة -->
 
                 <button
                     type="button"
-                    class="example-sound-btn"
-                    onclick="speakExampleSlow()"
+                    class="sound-btn"
+                    onclick="speakWord()"
                 >
-                    🐢 نطق بطيء
+                    🔊 اسمع الكلمة
                 </button>
+
+
+
+                <!-- ======================================
+                     المثال
+                ======================================= -->
+
+                <div class="example">
+
+
+                    <span>
+                        💡 مثال
+                    </span>
+
+
+                    <p id="exampleText">
+                        I eat an apple.
+                    </p>
+
+
+                    <small id="exampleArabic">
+                        أنا آكل تفاحة.
+                    </small>
+
+
+
+                    <!-- أزرار نطق الجملة -->
+
+                    <div class="example-sound-buttons">
+
+
+                        <button
+                            type="button"
+                            class="example-sound-btn"
+                            onclick="speakExample()"
+                        >
+                            🔊 اسمع الجملة
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="example-sound-btn"
+                            onclick="speakExampleSlow()"
+                        >
+                            🐢 نطق بطيء
+                        </button>
+
+
+                    </div>
+
+
+                </div>
 
 
             </div>
 
 
+        </section>
+
+
+
+        <!-- ==========================================
+             أزرار المعرفة
+        ========================================== -->
+
+        <div class="knowledge-buttons">
+
+
+            <button
+                class="dont-know"
+                onclick="answer(false)"
+            >
+                ❌ لا أعرفها
+            </button>
+
+
+            <button
+                class="know"
+                onclick="answer(true)"
+            >
+                ✅ أعرفها
+            </button>
+
+
         </div>
 
 
-    </div>
+
+        <!-- ==========================================
+             الإجراءات
+        ========================================== -->
+
+        <div class="actions">
 
 
-</section>
+            <button
+                id="favoriteBtn"
+                onclick="toggleFavorite()"
+            >
+                ☆
+
+                <span>
+                    حفظ
+                </span>
+
+            </button>
+
+
+            <button
+                class="next-btn"
+                onclick="nextWord()"
+            >
+                الكلمة التالية
+                ←
+            </button>
+
+
+        </div>
+
+
+    </main>
 
 
 
-<!-- أعرف / لا أعرف -->
+    <!-- Supabase -->
 
-<div class="knowledge-buttons">
-
-
-    <button
-        class="dont-know"
-        onclick="answer(false)"
-    >
-        ❌ لا أعرفها
-    </button>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 
-    <button
-        class="know"
-        onclick="answer(true)"
-    >
-        ✅ أعرفها
-    </button>
+    <script src="supabase.js"></script>
 
+    <script src="words.js"></script>
 
-</div>
+    <script src="notifications.js"></script>
 
 
 
-<!-- الإجراءات -->
+    <!-- ==========================================
+         إظهار / إخفاء الترجمة
+    ========================================== -->
 
-<div class="actions">
+    <script>
 
+        function toggleTranslation() {
 
-    <button
-        id="favoriteBtn"
-        onclick="toggleFavorite()"
-    >
-        ☆
-        <span>
-            حفظ
-        </span>
-    </button>
+            const arabicWord =
+                document.getElementById("arabicWord");
 
-
-    <button
-        class="next-btn"
-        onclick="nextWord()"
-    >
-        الكلمة التالية
-        ←
-    </button>
+            const toggleButton =
+                document.getElementById("translationToggle");
 
 
-</div>
-```
+            if (!arabicWord || !toggleButton) {
 
-</main>
+                return;
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+            }
 
-<script src="supabase.js"></script>
 
-<script src="words.js"></script>
+            const isHidden =
+                arabicWord.classList.contains("hidden-translation");
 
-<script src="notifications.js"></script>
 
-<script src="presence.js"></script>
+            if (isHidden) {
 
-<script>
-startPresence("words");
-</script>
+                arabicWord.classList.remove(
+                    "hidden-translation"
+                );
+
+                toggleButton.innerHTML =
+                    "🙈 إخفاء الترجمة";
+
+            } else {
+
+                arabicWord.classList.add(
+                    "hidden-translation"
+                );
+
+                toggleButton.innerHTML =
+                    "👁️ إظهار الترجمة";
+
+            }
+
+        }
+
+
+
+        /* ==========================================
+           إعادة إخفاء الترجمة
+           عند تغيير الكلمة
+        ========================================== */
+
+        function resetTranslationVisibility() {
+
+            const arabicWord =
+                document.getElementById("arabicWord");
+
+            const toggleButton =
+                document.getElementById("translationToggle");
+
+
+            if (arabicWord) {
+
+                arabicWord.classList.add(
+                    "hidden-translation"
+                );
+
+            }
+
+
+            if (toggleButton) {
+
+                toggleButton.innerHTML =
+                    "👁️ إظهار الترجمة";
+
+            }
+
+        }
+
+
+        /* ==========================================
+           مراقبة تغيّر الكلمة
+           بدون الحاجة لتعديل words.js
+        ========================================== */
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            function () {
+
+                resetTranslationVisibility();
+
+
+                const arabicWord =
+                    document.getElementById("arabicWord");
+
+
+                if (!arabicWord) {
+
+                    return;
+
+                }
+
+
+                const observer =
+                    new MutationObserver(function () {
+
+                        resetTranslationVisibility();
+
+                    });
+
+
+                observer.observe(
+                    arabicWord,
+                    {
+                        childList: true,
+                        characterData: true,
+                        subtree: true
+                    }
+                );
+
+            }
+        );
+
+    </script>
+
 
 </body>
 
